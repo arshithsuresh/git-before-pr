@@ -10,16 +10,29 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:git-before-pr.helloWorld"
+    "onLanguage:typescript",
+    "onCommand:git-before-pr.enableConsoleWarning"
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
+    "commands": [      
       {
-        "command": "git-before-pr.helloWorld",
-        "title": "Hello World"
+        "command": "git-before-pr.enableConsoleWarning",
+        "title": "Enable Console Warning"
+      },
+      {
+        "command": "git-before-pr.disableConsoleWarning",
+        "title": "Disable Console Warning"
       }
-    ]
+    ],
+    "configuration": {
+      "properties": {
+          "git-before-pr.enableConsoleWarning": {
+              "type": "boolean",
+              "default": true
+          }
+      }
+  }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

@@ -1,0 +1,1 @@
+export const EXTENSION_NAME='git-before-pr';
