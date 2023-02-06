@@ -15,7 +15,52 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [      
+    "menus": {
+      "view/item/context": [        
+        {
+          "command": "console-logs.deleteEntry",
+          "when": "view == console-logs",
+          "group": "inline"
+        },
+        {
+          "command": "console-logs.viewCode",
+          "when": "view == console-logs",
+          "group": "inline"
+        }        
+      ],
+      "view/title": [        
+        {
+          "command": "console-logs.refresh",
+          "when": "view == console-logs",
+          "group": "navigation"
+        }
+      ]
+    },
+    "commands": [    
+      {
+        "command": "console-logs.deleteEntry",
+        "title": "delete",
+        "icon":{
+          "light": "icons/light/close.svg",
+          "dark": "icons/dark/close.svg"
+        }      
+      },
+      {
+        "command": "console-logs.viewCode",
+        "title": "view in code",
+        "icon":{
+          "dark": "icons/dark/arrow-right.svg",
+          "light": "icons/light/arrow-right.svg"
+        }  
+      },
+      {
+        "command": "console-logs.refresh",
+        "title": "refresh",
+        "icon":{
+          "light": "icons/light/refresh.svg",
+          "dark": "icons/dark/refresh.svg"
+        }
+      },  
       {
         "command": "git-before-pr.enableConsoleWarning",
         "title": "Enable Console Warning"
@@ -23,7 +68,7 @@
       {
         "command": "git-before-pr.disableConsoleWarning",
         "title": "Disable Console Warning"
-      }
+      }      
     ],
     "configuration": {
       "properties": {
@@ -32,6 +77,33 @@
               "default": true
           }
       }
+  },
+  "viewsWelcome": [
+    {
+      "view": "console-logs",
+      "contents": "Hooray! No debugging elements founds. You are good to go."
+    }
+  ],
+  "viewsContainers": {
+    "activitybar": [
+      {
+        "id": "gbf-view",
+        "title": "Before PR",
+        "icon": "assets/logo/logo.png"        
+      }
+    ]
+  },
+  "views": {
+    "gbf-view": [
+      {
+        "id": "console-logs",
+        "name": "Console Logs"
+      },
+      {
+        "id": "to-do-list",
+        "name": "To Do Before PR"
+      }     
+    ]
   }
   },
   "scripts": {
