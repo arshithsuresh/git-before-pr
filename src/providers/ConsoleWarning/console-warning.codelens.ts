@@ -8,6 +8,7 @@ export class ConsoleWarningProvider implements vscode.CodeLensProvider{
     private codeLenses: vscode.CodeLens[]=[];
     private _onDidChangeCodeLenses: vscode.EventEmitter<void> = new vscode.EventEmitter<void>();
     public readonly onDidChangeCodeLenses?: vscode.Event<void> = this._onDidChangeCodeLenses.event;
+
     constructor(){
         this.regex = /(console.)+/g;
 
@@ -43,7 +44,7 @@ export class ConsoleWarningProvider implements vscode.CodeLensProvider{
 
     public resolveCodeLens(codeLens: vscode.CodeLens, token: vscode.CancellationToken): vscode.ProviderResult<vscode.CodeLens> {
         if(vscode.workspace.getConfiguration(EXTENSION_NAME).get(ConsoleWarningCommands.ENABLE_CODELENS, true)){
-            codeLens.command={
+            codeLens.command={                
                 title:"Remove console.logs before putting a PR",
                 command: `${EXTENSION_NAME}.${ConsoleWarningCommands.CONSOLE_WARNING_ACTION}`,                
             }
